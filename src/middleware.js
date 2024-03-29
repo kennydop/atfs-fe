@@ -19,7 +19,9 @@ export async function middleware(request) {
       !currentUser &&
       !pathname.startsWith("/signin") &&
       !pathname.startsWith("/signup") &&
-      !pathname.startsWith("/verify-email")
+      !pathname.startsWith("/verify-email") &&
+      !pathname.startsWith("/forgot-password") &&
+      !pathname.startsWith("/reset-password")
     ) {
       return Response.redirect(new URL("/signin", request.url));
     } else if (

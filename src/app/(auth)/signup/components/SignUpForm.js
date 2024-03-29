@@ -8,6 +8,7 @@ import {
 } from "@/validators/formValidator";
 import { useRouter } from "next/navigation";
 import Button from "@/app/components/Button";
+import requests from "@/helpers/apiRequests";
 
 const SignUpForm = () => {
   const [error, setError] = useState(null);
@@ -51,31 +52,18 @@ const SignUpForm = () => {
     setLoading(true);
     try {
       // Call the API to sign up the user
-      const response = await fetch("http://localhost:5000/auth/signup", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name.trim(),
-          email,
-          password,
-        }),
+      const data = await requests.post("/auth/signup", {
+        name: name.trim(),
+        email,
+        password,
       });
 
-      const data = await response.json();
-
       setLoading(false);
-
-      if (!response.ok) {
-        setError(data.message ?? "An error occurred. Please try again later.");
-        return;
-      }
 
       if (!data.success) {
         // Redirect the user to the home page
         router.replace("/verify-email");
+        setError(data.message ?? "An error occurred. Please try again later.");
         return;
       }
     } catch (error) {
@@ -176,11 +164,7 @@ const SignUpForm = () => {
           </p>
         </div>
         <div className="mt-4">
-          <Button
-            loading={loading}
-            type="submit"
-            className="w-full px-4 py-2 bg-primary text-white rounded-md shadow-sm hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-          >
+          <Button loading={loading} type="submit">
             Sign Up
           </Button>
         </div>

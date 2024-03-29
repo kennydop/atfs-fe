@@ -5,6 +5,7 @@ const get = async (url) => {
     credentials: "include",
   });
   const data = await response.json();
+  data.success = data.success ?? response.ok;
   return data;
 };
 
@@ -18,6 +19,7 @@ const post = async (url, body) => {
     body: JSON.stringify(body),
   });
   const data = await response.json();
+  data.success = data.success ?? response.ok;
   return data;
 };
 
@@ -31,6 +33,8 @@ const patch = async (url, body) => {
     body: JSON.stringify(body),
   });
   const data = await response.json();
+  data.success = data.success ?? response.ok;
+
   return data;
 };
 
