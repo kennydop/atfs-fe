@@ -2,11 +2,199 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-
 body {
-  font-family: "Raleway", sans-serif;
   @apply text-text bg-bg;
+}
+
+.rc-pagination {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.rc-pagination ul,
+.rc-pagination ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rc-pagination::after {
+  display: block;
+  clear: both;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: " ";
+}
+
+.rc-pagination-total-text {
+  display: inline-block;
+  height: 28px;
+  margin-right: 8px;
+  line-height: 26px;
+  vertical-align: middle;
+}
+
+.rc-pagination-item {
+  display: inline-block;
+  min-width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  font-family: Arial;
+  line-height: 26px;
+  text-align: center;
+  vertical-align: middle;
+  list-style: none;
+  background-color: #fff;
+  @apply border border-gray-300;
+  border-radius: 2px;
+  outline: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.rc-pagination-item a {
+  display: block;
+  padding: 0 6px;
+  color: rgba(0, 0, 0, 0.85);
+  transition: none;
+}
+
+.rc-pagination-item:hover,
+.rc-pagination-item:focus {
+  @apply border-primary;
+}
+
+.rc-pagination-item-active {
+  font-weight: 500;
+  background: #fff;
+  @apply border-primary;
+}
+
+.rc-pagination-item-active a {
+  @apply text-primary;
+}
+
+.rc-pagination-jump-prev,
+.rc-pagination-jump-next {
+  outline: 0;
+}
+
+.rc-pagination-jump-prev button,
+.rc-pagination-jump-next button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+.rc-pagination-jump-prev button:after,
+.rc-pagination-jump-next button:after {
+  display: block;
+  content: "•••";
+}
+
+.rc-pagination-prev,
+.rc-pagination-jump-prev,
+.rc-pagination-jump-next {
+  margin-right: 8px;
+}
+
+.rc-pagination-prev,
+.rc-pagination-next,
+.rc-pagination-jump-prev,
+.rc-pagination-jump-next {
+  display: inline-block;
+  min-width: 28px;
+  height: 28px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: Arial;
+  line-height: 28px;
+  text-align: center;
+  vertical-align: middle;
+  list-style: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.rc-pagination-prev button:after {
+  content: "‹";
+  display: block;
+}
+
+.rc-pagination-next button:after {
+  content: "›";
+  display: block;
+}
+
+.rc-pagination-disabled {
+  cursor: not-allowed;
+}
+
+.rc-pagination-disabled,
+.rc-pagination-disabled:hover,
+.rc-pagination-disabled:focus {
+  .rc-pagination-item a {
+    color: rgba(0, 0, 0, 0.25);
+    @apply border-gray-300;
+    cursor: not-allowed;
+  }
+}
+
+.rc-pagination-disabled .rc-pagination-item-active {
+  background: #f3f3f3;
+  border-color: transparent;
+}
+
+.rc-pagination-disabled .rc-pagination-item-link-icon {
+  opacity: 0;
+}
+
+.rc-pagination-disabled .rc-pagination-item-ellipsis {
+  opacity: 1;
+}
+
+.rc-pagination-slash {
+  margin: 0 10px 0 5px;
+}
+
+.rc-pagination-options {
+  display: inline-block;
+  margin-left: 16px;
+  vertical-align: middle;
+}
+
+.rc-pagination-options-size-changer.rc-select {
+  display: inline-block;
+  width: auto;
+  margin-right: 8px;
+}
+
+.rc-pagination-options-quick-jumper {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  vertical-align: top;
+}
+
+.rc-pagination-options-quick-jumper input {
+  width: 50px;
+  margin: 0 8px;
+}
+
+@media only screen and (max-width: 992px) {
+  .rc-pagination-item-after-jump-prev,
+  .rc-pagination-item-before-jump-next {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .rc-pagination-options {
+    display: none;
+  }
 }
 
 @layer utilities {
